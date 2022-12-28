@@ -207,10 +207,5 @@ div.desc {
 }
 
 .footer {
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
 	text-align: center;
-	background-color: rgba(3, 20, 99, 0.384);
 }
