@@ -95,8 +95,8 @@ body {
 	display: block;
 	font-weight: 700;
 	margin: 0 0 20px;
-	line-height: 50px;
 	width: 100%;
+	line-height: 50px;
 }
 
 .test_link {
@@ -111,31 +111,19 @@ body {
 }
 
 .box-01 .inner {
-	background-image: url('/images/Main\ Banner.png');
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
+	background: url(https://i.ytimg.com/vi/sxmGEDFiRAQ/maxresdefault.jpg) no-repeat center center;
 }
 
 .box-02 .inner {
-	background-image: url('/images/plan.png');
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
+	background: url(https://i.ytimg.com/vi/sxmGEDFiRAQ/maxresdefault.jpg) no-repeat center center;
 }
 
 .box-03 .inner {
-	background-image: url('/images/dynmap.png');
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
+	background: url(https://i.ytimg.com/vi/sxmGEDFiRAQ/maxresdefault.jpg) no-repeat center center;
 }
 
 .box-04 .inner {
-	background-image: url('/images/ComingSoon\ Banner.webp');
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
+	background: url(https://i.ytimg.com/vi/sxmGEDFiRAQ/maxresdefault.jpg) no-repeat center center;
 }
 
 .box-05 .inner {
@@ -143,38 +131,7 @@ body {
 }
 
 .box-06 .inner {
-	background-image: url('/images/ComingSoon\ Banner.webp');
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
-.box-07 .inner {
-	background-image: url('/images/ComingSoon\ Banner.webp');
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
-.box-08 .inner {
-	background-image: url('/images/ComingSoon\ Banner.webp');
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
-.box-09 .inner {
-	background-image: url('/images/ComingSoon\ Banner.webp');
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-
-.box-10 .inner {
-	background-image: url('/images/ComingSoon\ Banner.webp');
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
+	background: url(https://i.ytimg.com/vi/sxmGEDFiRAQ/maxresdefault.jpg) no-repeat center center;
 }
 
 div.gallery {
