@@ -38,3 +38,133 @@
 body {
 	background: #048;
 }
+
+
+
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .gallery-item {
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-out;
+  }
+
+  .gallery-item:hover {
+    transform: scale(1.1);
+  }
+
+  .gallery-item img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-out;
+  }
+
+  .overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
+
+  .overlay .nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .overlay .nav .arrow {
+    color: #fff;
+    font-size: 3rem;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  .overlay .title-box {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+
+.download-box {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #d10e0e00;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.download-button {
+  display: block;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 2px solid #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.download-button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+
+.left-arrow-box {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+}
+
+
+.right-arrow-box {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}

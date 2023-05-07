@@ -9,118 +9,152 @@
     <link rel="icon" type="image/x-icon" href="/images/Favicon.png" />
   </head>
   <body>
-    <style>
-  .gallery {
-    display: flex;
-    flex-wrap: wrap;
-  }
+    <div class="gallery">
+      <script>
+        const titles = {
+          1:"Wide screenshot of my redstone testing world",
+          3:"Collection of Beacons - just missing netherite",
+          4:"Upsidown can doggo",
+          5:"Auto Wither Killer",
+          8:"The spoils of afking for a long time at a wither skeleton farm",
+          9:"The creation of can doggo",
+          10:"Command Block Fun",
+          11:"Overkill? Whats That?",
+          12:"Overkill but from a different angle",
+          13:"A slight leak",
+          14:"Full can doggo (unfortunately never finished in survival)",
+          15:"Arial view of my base",
+          16:"Almost Done",
+          17:"Almost Done",
+          18:"Almost Done",
+          19:"Almost Done",
+          20:"Almost Done",
+          21:"Almost Done",
+          22:"New mining Drill",
+          23:"Mining away I don't know what to mine I'll mine this anyway",
+          24:"Minecraft Cinematic Universe - MCU",
+          25:"Ilmango Once said - I like to go caving. But i prefer to make my own cave",
+          26:"Design by Borkon",
+          27:"Wide area view of my base and the surrounding area",
+          28:"Wide area view of my base and the surrounding area",
+          29:"Wide area view of my base and the surrounding area",
+          30:"Wide area view of my base and the surrounding area",
+          31:"Wide area view of my base and the surrounding area",
+          35:"Random blue base",
+          36:"attempt 1",
+          37:"Taste the rainbow",
+          38:"Why did i think this was a good idea",
+          39:"I like this one",
+          40:"Finally a good one",
+          44:"Map :)",
+          48:"The first quarter drained",
+          56:"Another Wide angle view of my base and the surrounding area",
+          58:"Im on max render distance and i still cant see who tf asked",
+          59:"Hey i can see my house from here",
+          61:"Spawn coming along nicely",
+          62:"Initial Spawn area - Inside a hollowed out mountain",
+          63:"The docks before the ships were built",
+          65:"Initial idea for spawn location",
+          66:"VOID",
+          67:"Hole made with SpookyClang go follow her on twitch at twitch.tv/spooky_clang",
+          68:"Hole made with SpookyClang go follow her on twitch at twitch.tv/spooky_clang",
+          69:"Nice",
+          72:"Day 48567346 - All i see now is gold as far as the eye can see",
+          73:"2K Piston Bolt",
+          74:"Shop i built at spawn",
+          75:"Shop i built at spawn",
+          76:"Shop i built at spawn",
+          77:"Shop i built at spawn",
+          78:"Murder Time",
+          79:"More Gold",
+          84:"New Spawn Shop",
+          88:"Dont ask",
+          90:"Beefs unfinished castle #3487567346",
+          94:"One of my earliest bases in multiplayer",
+          95:"Kaboom? Yes Rico Kaboom",
+          96:"Kaboom but with shaders",
+          105:"Storage With A Passion",
+          106:"Start of a new Server",
+          108:"Hermitcraft Joins the fun",
+          109:"Base Made by Mop",
+          110:"Base Made by Mop",
+          111:"Sugar Cane Farm :)",
+          112:"Starry Night Sky",
+          113:"Another redstone world wide Shot"
+        };
 
-  .gallery-item {
-    margin: 10px;
-    cursor: pointer;
-    transition: transform 0.2s ease-out;
-  }
+        let i = 1;
+        while (
+          imageExists(`/images/Screenshots/compressed/Screenshot${i}.jpg`)
+        ) {
+          document.write(`
+            <div class="gallery-item" onclick="showOverlay('${i}')">
+              <img src="/images/Screenshots/compressed/Screenshot${i}.jpg" class="gallery-image" alt="Screenshot ${i}"/>
+            </div>
+          `);
+          i++;
+        }
 
-  .gallery-item:hover {
-    transform: scale(1.1);
-  }
+        function imageExists(image_url) {
+          var http = new XMLHttpRequest();
+          http.open("HEAD", image_url, false);
+          http.send();
+          return http.status != 404;
+        }
 
-  .gallery-item img {
-    max-width: 100%;
-    height: auto;
-  }
+        function showOverlay(imageIndex) {
+          const overlay = document.createElement("div");
+          overlay.classList.add("overlay");
+          overlay.addEventListener("click", hideOverlay);
 
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease-out;
-  }
+          const image = document.createElement("img");
+          image.src = `/images/Screenshots/compressed/Screenshot${imageIndex}.jpg`;
 
-  .overlay.show {
-    opacity: 1;
-    pointer-events: auto;
-  }
+          const title = titles[imageIndex];
 
-  .overlay img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-  }
+          const titleBox = document.createElement("div");
+          titleBox.classList.add("title-box");
+          titleBox.textContent = `Screenshot ${imageIndex}${
+            title ? ": " + title : ""
+          }`;
+          overlay.appendChild(titleBox);
 
-  .overlay .nav {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1;
-    pointer-events: none;
-  }
+          overlay.appendChild(image);
 
-  .overlay .nav .arrow {
-    color: #fff;
-    font-size: 3rem;
-    cursor: pointer;
-    pointer-events: auto;
-  }
-</style>
-      </style>
-      
-      <div class="gallery">
-        <script>
-          const titles = {
-            1: "Never gonna give you up",
-            3: "Never gonna let you down",
-            10: "Never gonna run around",
-            27: "And desert you"
-          };
-      
-          for (let i = 1; i <= 115; i++) {
-            document.write(`
-              <div class="gallery-item" onclick="showOverlay('${i}')">
-                <img src="/images/Screenshots/Screenshot${i}.png" class="gallery-image" alt="Screenshot ${i}" ${titles[i] ? `title="${titles[i]}"` : ""} />
-              </div>
-            `);
-          }
-      
-          function showOverlay(imageIndex) {
-            const overlay = document.createElement("div");
-            overlay.classList.add("overlay");
-            overlay.addEventListener("click", hideOverlay);
-      
-            const image = document.createElement("img");
-            image.src = `/images/Screenshots/Screenshot${imageIndex}.png`;
-      
-            overlay.appendChild(image);
-            document.body.appendChild(overlay);
-      
-            setTimeout(() => {
-              overlay.classList.add("show");
-            }, 10);
-          }
-      
-          function hideOverlay() {
-            const overlay = document.querySelector(".overlay.show");
-            overlay.classList.remove("show");
-      
-            setTimeout(() => {
-              overlay.remove();
-            }, 200);
-          }
-        </script>
-      </div>
-      
+          const downloadButton = document.createElement("a");
+          downloadButton.classList.add("download-button");
+          downloadButton.setAttribute(
+            "href",
+            `/images/Screenshots/raw/Screenshot${imageIndex}.png`
+          );
+          downloadButton.setAttribute(
+            "download",
+            `Screenshot${imageIndex}.png`
+          );
+          downloadButton.innerHTML =
+            '<i class="fa fa-download"></i> Download Raw Image';
+
+          const downloadBox = document.createElement("div");
+          downloadBox.classList.add("download-box");
+          downloadBox.appendChild(downloadButton);
+          overlay.appendChild(downloadBox);
+
+          document.body.appendChild(overlay);
+
+          setTimeout(() => {
+            overlay.classList.add("show");
+          }, 10);
+        }
+
+        function hideOverlay() {
+          const overlay = document.querySelector(".overlay.show");
+          overlay.classList.remove("show");
+
+          setTimeout(() => {
+            overlay.remove();
+          }, 200);
+        }
+      </script>
+    </div>
   </body>
 </html>
