@@ -146,9 +146,29 @@ body {
   background-color: #fff;
   border: 2px solid #333;
   transition: background-color 0.3s, color 0.3s;
+  margin-right: 50px;
 }
 
 .download-button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.copy-button {
+  display: block;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 2px solid #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.copy-button:hover {
   background-color: #333;
   color: #fff;
 }
