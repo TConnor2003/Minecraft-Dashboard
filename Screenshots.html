@@ -109,46 +109,62 @@ function showOverlay(imageIndex) {
 
   const image = document.createElement("img");
   image.src = `/images/Screenshots/compressed/Screenshot${imageIndex}.jpg`;
-  image.id = `${imageIndex}`;
 
   const title = titles[imageIndex];
 
   const titleBox = document.createElement("div");
   titleBox.classList.add("title-box");
-  titleBox.textContent = `Screenshot ${imageIndex}${
-    title ? ": " + title : ""
-  }`;
+  titleBox.textContent = `Screenshot ${imageIndex}${title ? ": " + title : ""}`;
   overlay.appendChild(titleBox);
 
   overlay.appendChild(image);
 
-  const downloadButton = document.createElement("a");
-  downloadButton.classList.add("download-button");
-  downloadButton.setAttribute(
-    "href",
-    `/images/Screenshots/raw/Screenshot${imageIndex}.png`
-  );
-  downloadButton.setAttribute(
-    "download",
-    `Screenshot${imageIndex}.png`
-  );
-  downloadButton.innerHTML =
-    '<i class="fa fa-download"></i> Download Raw Image';
-
-  const copyButton = document.createElement("button");
-  copyButton.classList.add("copy-button");
-  copyButton.innerHTML =
-    '<i class="fa fa-copy"></i> Copy Raw Image URL';
-  copyButton.addEventListener("click", () => {
-    const rawImageUrl = `https://mc.craftyplayz.com/images/Screenshots/raw/Screenshot${imageIndex}.png`;
-    navigator.clipboard.writeText(rawImageUrl);
-    alert("Raw Image URL copied to clipboard!");
-  });
-
   const downloadBox = document.createElement("div");
   downloadBox.classList.add("download-box");
+
+  const copyUrlButton = document.createElement("button");
+  copyUrlButton.classList.add("download-button");
+  copyUrlButton.textContent = "Copy Download URL";
+  copyUrlButton.addEventListener("click", () => {
+    navigator.clipboard.writeText(image.src);
+  });
+
+  const copyCurrentUrlButton = document.createElement("button");
+  copyCurrentUrlButton.classList.add("download-button");
+  copyCurrentUrlButton.textContent = "Copy Current URL";
+  copyCurrentUrlButton.addEventListener("click", () => {
+    navigator.clipboard.writeText(window.location.href);
+  });
+
+  // Move the copy buttons to the download box
+  downloadBox.appendChild(copyUrlButton);
+  downloadBox.appendChild(copyCurrentUrlButton);
+
+  // Create a download button
+  const downloadButton = document.createElement("button");
+  downloadButton.classList.add("download-button");
+  downloadButton.innerHTML = '<i class="fa fa-download"></i> Download Raw Image';
+  downloadButton.addEventListener("click", () => {
+    // Download the image
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", `/images/Screenshots/raw/Screenshot${imageIndex}.png`);
+    xhr.responseType = "blob";
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        const blob = xhr.response;
+        const link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = `Screenshot${imageIndex}.png`;
+        link.click();
+      } else {
+        console.error("Error downloading image:", xhr.status);
+      }
+    };
+    xhr.send();
+  });
+
   downloadBox.appendChild(downloadButton);
-  downloadBox.appendChild(copyButton);
+
   overlay.appendChild(downloadBox);
 
   document.body.appendChild(overlay);
@@ -156,17 +172,19 @@ function showOverlay(imageIndex) {
   setTimeout(() => {
     overlay.classList.add("show");
   }, 10);
-}
-
-
 
   // remove any existing hash from the URL bar
   if (window.location.hash) {
     window.history.pushState("", document.title, window.location.pathname);
   }
-  
+
   // add the imageIndex to the URL bar as a hash
   window.history.pushState({}, '', `#${imageIndex}`);
+}
+
+
+
+
 
 
 function hideOverlay() {
@@ -193,7 +211,24 @@ window.addEventListener("load", () => {
     }
   }
 });
+window.addEventListener("hashchange", () => {
+  // Check the new hash
+  const newHash = window.location.hash;
 
+  // If the new hash is different from the old hash,
+  // scroll to the image specified in the new hash
+  if (newHash !== window.oldHash) {
+    const id = newHash.slice(1);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView();
+      showOverlay(id);
+    }
+  }
+
+  // Save the new hash as the old hash
+  window.oldHash = newHash;
+});
       </script>
     </div>
   </body>
