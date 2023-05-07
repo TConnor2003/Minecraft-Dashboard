@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Minecraft Screenshots</title>
+    <link rel="stylesheet" href="/gallery.css" />
+    <link rel="icon" type="image/x-icon" href="/images/Favicon.png" />
+  </head>
+  <body>
+    <style>
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .gallery-item {
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-out;
+  }
+
+  .gallery-item:hover {
+    transform: scale(1.1);
+  }
+
+  .gallery-item img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-out;
+  }
+
+  .overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
+
+  .overlay .nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .overlay .nav .arrow {
+    color: #fff;
+    font-size: 3rem;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+</style>
+      </style>
+      
+      <div class="gallery">
+        <script>
+          const titles = {
+            1: "Never gonna give you up",
+            3: "Never gonna let you down",
+            10: "Never gonna run around",
+            27: "And desert you"
+          };
+      
+          for (let i = 1; i <= 115; i++) {
+            document.write(`
+              <div class="gallery-item" onclick="showOverlay('${i}')">
+                <img src="/images/Screenshots/Screenshot${i}.png" class="gallery-image" alt="Screenshot ${i}" ${titles[i] ? `title="${titles[i]}"` : ""} />
+              </div>
+            `);
+          }
+      
+          function showOverlay(imageIndex) {
+            const overlay = document.createElement("div");
+            overlay.classList.add("overlay");
+            overlay.addEventListener("click", hideOverlay);
+      
+            const image = document.createElement("img");
+            image.src = `/images/Screenshots/Screenshot${imageIndex}.png`;
+      
+            overlay.appendChild(image);
+            document.body.appendChild(overlay);
+      
+            setTimeout(() => {
+              overlay.classList.add("show");
+            }, 10);
+          }
+      
+          function hideOverlay() {
+            const overlay = document.querySelector(".overlay.show");
+            overlay.classList.remove("show");
+      
+            setTimeout(() => {
+              overlay.remove();
+            }, 200);
+          }
+        </script>
+      </div>
+      
+  </body>
+</html>
